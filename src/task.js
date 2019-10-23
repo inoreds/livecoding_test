@@ -54,7 +54,6 @@ createColumn = (count) => {
 
   changeFilter(event){
     this.setState({filter_color: event.target.value});
-    // this.setState({filter_color: event.target.value})
   }
 
   switchDarker(){
@@ -64,7 +63,6 @@ createColumn = (count) => {
   }
 
   render() {
-      console.log(this.state.darker)
     return (
         <div className="App">
             <div className="container" style={{marginBottom: '10px', marginTop: '10px'}}>
