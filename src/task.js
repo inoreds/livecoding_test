@@ -1,39 +1,41 @@
 import React, {Component} from 'react';
 import './App.css';
-import color from './color';
-import color_darker from './color_darker';
+import color from './color'; // json color object
+import color_darker from './color_darker'; // json color darker object
 
 class task extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      filter_color : 'all',
-      darker: false,
+      filter_color : 'all', // for default filter color
+      darker: false, // for default saturation 
   }
   this.changeFilter = this.changeFilter.bind(this)
   this.switchDarker = this.switchDarker.bind(this);
 }
 
-createColumn = (count) => {
-    let column = []
+    //create coloumn
+    createColumn = (count) => {
+        let column = []
 
-    for (var j=0; j<5; j++){
-        // var data_color = color.data;
-        if (this.state.darker == false) {
-            var data_color = color.data;
-        } else {
-            var data_color = color_darker.data;
+        for (var j=0; j<5; j++){
+            // var data_color = color.data;
+            if (this.state.darker == false) {
+                var data_color = color.data;
+            } else {
+                var data_color = color_darker.data;
+            }
+        
+
+            column.push(<div className="square" id={j+count} style={{backgroundColor: data_color[count+j].color_code}} key={j+count}>
+                <div className="content">
+                </div>
+            </div>)
         }
-       
-
-        column.push(<div className="square" id={j+count} style={{backgroundColor: data_color[count+j].color_code}} key={j+count}>
-            <div className="content">
-            </div>
-        </div>)
-    }
-    return column
+        return column
   }
 
+  //create row 
   createRow = () => {
     var row = []
     var count = 0;
@@ -52,10 +54,12 @@ createColumn = (count) => {
     return row
   }
 
+  // filter color
   changeFilter(event){
     this.setState({filter_color: event.target.value});
   }
 
+  //swith saturation
   switchDarker(){
     this.setState({
       darker: !this.state.darker
@@ -84,7 +88,6 @@ createColumn = (count) => {
                 <input
                     type="checkbox"
                     defaultChecked={this.state.darker}
-                    // ref="complete"
                     onChange={this.switchDarker}
                 />
             </div>
